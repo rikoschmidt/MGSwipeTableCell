@@ -112,8 +112,10 @@ typedef NS_ENUM(NSInteger, MGSwipeEasingFunction) {
     to make the cell 'resist' swiping after buttons are revealed. Default is 1.0 */
 @property (nonatomic, assign) CGFloat swipeBounceRate;
 
-@end
+/** default true, if false cell can not be hidden by swiping */
+@property (nonatomic, assign) BOOL allowSwipeToHide;
 
+@end
 
 /**
  * Expansion settings to make expandable buttons

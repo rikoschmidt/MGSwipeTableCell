@@ -406,6 +406,7 @@
         self.showAnimation = [[MGSwipeAnimation alloc] init];
         self.hideAnimation = [[MGSwipeAnimation alloc] init];
         self.stretchAnimation = [[MGSwipeAnimation alloc] init];
+        self.allowSwipeToHide = YES;
     }
     return self;
 }
@@ -1294,6 +1295,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     
     if (gestureRecognizer == _panRecognizer) {
         
+
         if (self.isEditing) {
             return NO; //do not swipe while editing table
         }
@@ -1310,6 +1312,11 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         }
         
         if (_swipeOffset != 0.0) {
+            
+            if (!self.rightSwipeSettings.allowSwipeToHide || !self.leftSwipeSettings.allowSwipeToHide) {
+                return NO;
+            }
+            
             return YES; //already swiped, don't need to check buttons or canSwipe delegate
         }
         
